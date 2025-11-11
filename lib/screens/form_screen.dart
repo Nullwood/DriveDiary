@@ -56,7 +56,7 @@ class _FormScreenState extends State<FormScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Запись в автосервис'),
-        backgroundColor: const Color.fromARGB(255, 130, 130, 130),
+        backgroundColor: const Color.fromARGB(255, 180, 180, 180),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -150,7 +150,7 @@ class _FormScreenState extends State<FormScreen> {
                 child: ElevatedButton.icon(
                   onPressed: _submitForm,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 130, 130, 130),
+                    backgroundColor: const Color.fromARGB(255, 180, 180, 180),
                     padding: const EdgeInsets.symmetric(
                         horizontal: 40, vertical: 14),
                     shape: RoundedRectangleBorder(
