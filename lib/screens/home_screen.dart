@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'form_screen.dart';
+import 'details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,6 +56,28 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Icon(Icons.add),
             backgroundColor: Colors.grey,
           ),
+          const SizedBox(width: 10),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const FormScreen()),
+              );
+            },
+            child: const Icon(Icons.add_call),
+            backgroundColor: Colors.grey,
+          ),
+          const SizedBox(width: 10,),
+          FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const DetailsScreen()),
+              );
+            },
+            child: const Icon(Icons.add_alarm),
+            backgroundColor: Colors.grey,
+          )
         ],
       ),
     );
