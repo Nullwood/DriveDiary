@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key});
@@ -13,6 +14,15 @@ class _FormScreenState extends State<FormScreen> {
   final _emailController = TextEditingController();
   final _carModelController = TextEditingController();
   final _commentController = TextEditingController();
+
+  String _name = "Паша";
+
+  void _setName(String newName) {
+    setState(() {
+      _name = newName;
+      saveData();
+    });
+  }
 
   @override
   void dispose() {
@@ -51,6 +61,23 @@ class _FormScreenState extends State<FormScreen> {
     }
   }
 
+  Future<void> saveData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString("name", _name);
+  }
+
+  Future<void> loadData() async {
+    final prefs = await SharedPreferences.getInstance();
+    String value = prefs.getString("name") ?? "Паша";
+
+    _setName(value);
+  }
+
+  @override
+  void initState() {
+    loadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +92,12 @@ class _FormScreenState extends State<FormScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(_name),
+              Row(children: [
+                ElevatedButton(onPressed: () => _setName('Джон'), child: const Text('Джон')),
+                ElevatedButton(onPressed: () => _setName('Макс'), child: const Text('Макс')),
+                ElevatedButton(onPressed: () => _setName('Раян'), child: const Text('Раян'))
+              ],),
               const Text(
                 'Оставьте заявку, и мы свяжемся с вами для уточнения деталей.',
                 style: TextStyle(fontSize: 16, color: Colors.black87),
